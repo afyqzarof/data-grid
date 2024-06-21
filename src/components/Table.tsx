@@ -1,28 +1,48 @@
 import { Row } from "./Row";
+import products from "../data/products.json";
 
 type TableProps = {
-  headers: Header[];
-  products: any[];
-};
-
-type Header = {
-  title: string;
-  width: number;
+  headers: string[];
 };
 
 const Table = ({ headers }: TableProps) => {
-  const widths = headers.map((header) => header.width);
+  const widths = [1, 4, 2, 2, 3];
+
   return (
     <main>
-      <section className="grid w-full grid-cols-12 bg-slate-100">
-        {headers.map((header) => {
+      <section className="grid w-full grid-cols-12">
+        {headers.map((header, index) => {
           return (
-            <div className={`col-span-${header.width} border p-2`}>
-              {header.title}
+            <div
+              className={`col-span-${widths[index]} border bg-slate-300 p-2`}
+              key={index}
+            >
+              {header}
             </div>
           );
         })}
-        <Row widths={widths} />
+        {products.map((product, index) => {
+          return (
+            <div
+              key={product.ProductID}
+              className="col-span-12 grid grid-cols-12"
+            >
+              <Row
+                product={product.ProductName}
+                id={product.ProductID}
+                unitPrice={product.UnitPrice}
+                qtyUnit={product.QuantityPerUnit}
+                index={index}
+                inStock={product.UnitsInStock}
+                onOrder={product.UnitsOnOrder}
+                reorder={product.ReorderLevel}
+                discontinued={product.Discontinued}
+                categoryName={product.Category?.CategoryName}
+                categoryDesc={product.Category?.Description}
+              />
+            </div>
+          );
+        })}
       </section>
     </main>
   );
