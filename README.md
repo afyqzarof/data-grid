@@ -28,6 +28,10 @@ npm run dev
 
 ## Video of website:
 
+
+https://github.com/afyqzarof/data-grid/assets/83950596/ef1509a6-ab87-4f48-ab56-eb81a4d98bad
+
+
 ## Improvements to be made
 
 - Make Table fully customisable for any data set
